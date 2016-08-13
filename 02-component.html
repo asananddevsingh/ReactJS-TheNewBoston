@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Component</title>
+    <script src="/libs/react.js"></script>
+    <script src="/libs/react-dom.js"></script>
+    <script src="/libs/browser.min.js"></script>
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+        var Component = React.createClass({
+            render: function(){
+                return (
+                    <h2>Hey React, This is first component.</h2>
+                );
+            }
+        });
+
+        ReactDOM.render(
+            <Component>This text will be not rendered</Component>
+            , document.getElementById('example')
+        );
+
+    </script>
+</body>
+</html>

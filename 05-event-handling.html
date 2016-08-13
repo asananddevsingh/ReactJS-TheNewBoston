@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Event Handling</title>
+    <script src="/libs/react.js"></script>
+    <script src="/libs/react-dom.js"></script>
+    <script src="/libs/browser.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+        var Comment = React.createClass({
+            render: function(){
+                return (
+                     <div className="commentContainer">
+                         <div className="commentText">{this.props.children}</div>
+                         <button onClick={this.edit} className="button-primary">Edit</button>
+                         <button onClick={this.remove} className="button-danger">Remove</button>
+                     </div>                   
+                );
+            },
+            edit: function(){
+                alert('Editing comment');
+            },
+            remove: function(){
+                alert('Removing comment');
+            }
+        });
+        
+        ReactDOM.render(
+            <div className="board">
+                <Comment>Anand Dev</Comment>
+                <Comment>Gullu Singh</Comment>
+                <Comment>Praveen</Comment>
+                <Comment>Mohit</Comment>
+            </div>, document.getElementById('example')
+        );
+    </script>
+</body>
+</html>

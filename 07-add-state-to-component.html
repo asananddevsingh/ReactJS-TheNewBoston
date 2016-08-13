@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Adding state to component</title>
+    <script src="/libs/react.js"></script>
+    <script src="/libs/react-dom.js"></script>
+    <script src="/libs/browser.min.js"></script>
+    <link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+    <div id="example"></div>
+    <script type="text/babel">
+
+        var Comment = React.createClass({
+            getInitialState: function(){
+              return ({
+                  editing: false
+              })
+            },
+            render: function(){
+                if(this.state.editing){
+                    return this.renderForm();
+                }
+                else{
+                    return this.renderText();
+                }
+            },
+            renderText: function(){
+                return (
+                     <div className="commentContainer">
+                         <div className="commentText">{this.props.children}</div>
+                         <button onClick={this.edit} className="button-primary">Edit</button>
+                         <button onClick={this.remove} className="button-danger">Remove</button>
+                     </div>                   
+                );
+            },
+            renderForm: function(){
+                return (
+                     <div className="commentContainer">
+                         <textarea defaultValue={this.props.children}></textarea>
+                         <button onClick={this.save} className="button-success">Save</button>                         
+                     </div>                   
+                );
+            },
+            edit: function(){
+                this.setState({editing: true})
+            },
+            remove: function(){
+                alert('Removing comment');
+            },
+            save: function(){
+                this.setState({editing: false});                
+            }
+        });
+        
+        ReactDOM.render(
+            <div className="board">
+                <Comment>Anand Dev</Comment>
+                <Comment>Gullu Singh</Comment>
+                <Comment>Praveen</Comment>
+                <Comment>Mohit</Comment>
+            </div>, document.getElementById('example')
+        );
+    </script>
+</body>
+</html>
